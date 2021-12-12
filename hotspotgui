@@ -1,0 +1,43 @@
+#! /usr/bin/python3
+# from  TK import
+import os
+import sys
+from tkinter.constants import CENTER
+from tkinter import messagebox
+import warnings
+# from Tk import ttk
+import tkinter as tk
+
+# input_param=sys.argv[1]
+root =tk. Tk()
+#root.attributes("-zoomed",True)
+root.geometry("400x400")
+root.resizable(0,0)
+root.configure(bg="#ccffcc")
+root.title("Hotspot")
+#root.configure(bg="#ffffcc")
+
+def on_hotspot():
+    os.system("nmcli r wifi on && nmcli device wifi  hotspot ifname wlp2s0 ssid manimohan_hotspot password manimohan_hotspot@123")
+    mb=messagebox.showinfo("Info","Hotspot has turned on")
+def off_hotspot():
+    os.system("nmcli r wifi off && nmcli r wifi on")
+    messagebox.showinfo("Alert","Hotspot has turned off")
+label=tk.Label(root, text="Hotspot!",bg="#ccffcc",fg='#45144d',font = ('Helvetica', 18, 'bold')).place(relx = 0.5, rely = 0.1, anchor = CENTER)
+
+on_button=tk.Button(root, text="ON", font = ('Helvetica', 11, 'bold'), command=on_hotspot,bg="#32b34c",fg="white",activebackground="#32b34c", height = 2, width = 6, activeforeground="yellow").place(relx = 0.5, rely = 0.25, anchor = CENTER)
+off_button=tk.Button(root, text="OFF", font = ('Helvetica', 11, 'bold'), command=off_hotspot,bg="#a82222",fg="white",activebackground="#a82222", height = 2, width = 6, activeforeground="yellow").place(relx = 0.5, rely = 0.40, anchor = CENTER)
+quit_button=tk.Button(root, text="QUIT", font = ('Helvetica', 11, 'bold'), command=root.destroy,bg="black",fg="white",activebackground="black", height = 2, width = 6, activeforeground="yellow").place(relx = 0.5, rely = 0.55, anchor = CENTER)
+
+root.mainloop()
+
+# if(len(sys.argv)==2):   
+#     if(sys.argv[1] not  in ["on","off","ON","OFF"]):
+#         warnings.warn("Wrong paramter please specify 'on' or 'off' !")
+#     elif(sys.argv[1] in ["on","off","ON","OFF"]):
+#         if(sys.argv[1] in ["on","ON"]):
+#             os.system("nmcli r wifi on && sudo nmcli device wifi  hotspot ifname wlp2s0 ssid manimohan_hotspot password manimohan_hotspot@123")
+#         elif(sys.argv[1] in ["off","OFF"]):
+#             os.system("nmcli r wifi off && nmcli r wifi on")
+# elif(len(sys.argv)!=2):
+#     warnings.warn("Please pass 'on' or 'off' as parameter")
